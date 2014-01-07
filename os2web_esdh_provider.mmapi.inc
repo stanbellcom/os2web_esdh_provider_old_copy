@@ -284,6 +284,10 @@ function _os2web_esdh_provider_import_items($items) {
     $node->title = $item['title'];
     // Set some default values.
     node_object_prepare($node);
+    
+    if (module_exists('os2dagsorden_esdh_provider')){
+      $node = os2dagsorden_esdh_provider_bullet_add_number($node, $item['id']);
+    }
     if ($item['access'] === 'Lukket') {
       $node->field_os2web_meetings_bul_closed[LANGUAGE_NONE][]['value'] = 1;
       if (module_exists('os2dagsorden_esdh_provider')){
