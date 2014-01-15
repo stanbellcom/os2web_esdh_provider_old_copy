@@ -184,8 +184,14 @@ function _os2web_esdh_provider_import_meeting($meeting_id, $force = FALSE, &$con
     
     //Adding participants
     if ($meeting['participants']){
-      $node->field_os2web_meetings_partic[LANGUAGE_NONE][0]['value'] = implode(variable_get('participants_delimeter', ', '), $meeting['participants']);
+      $node->field_os2web_meetings_partic[LANGUAGE_NONE][0]['value'] = implode(variable_get('os2dagsorden_participants_delimeter', ', '), $meeting['participants']);
       $node->field_os2web_meetings_partic[LANGUAGE_NONE][0]['format'] ='filtered_html';
+    }
+
+    //Adding cancelled participants
+    if ($meeting['participants_cancellation']){
+      $node->field_os2web_meetings_particcanl[LANGUAGE_NONE][0]['value'] = implode(variable_get('os2dagsorden_participants_delimeter', ', '), $meeting['participants_cancellation']);
+      $node->field_os2web_meetings_particcanl[LANGUAGE_NONE][0]['format'] ='filtered_html';
     }
 
     // Make sure the committee term is created and get the term.
